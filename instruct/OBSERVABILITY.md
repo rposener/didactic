@@ -25,7 +25,7 @@ Now, let me give a couple examples so that we can see the difference.  When upda
 ```
 
 **An important note**
-> Now, before we continue with this discussion, I'm going to tell you that I believe our code should have both.  While I do believe that a declarative approach is easier, there are times that in response to User Input there is so much todo, it becomes much more expressive to write declarative **Event Handler** code.  I draw the line there, as I advocate that declarative event handler code no matter how complex, should update Observable Application State in order to udpate the DOM.  Only in unusual or limited scenarios would I expect to see imperative DOM updates.
+> Now, before we continue with this discussion, I'm going to tell you that I believe our code should have both.  While I do believe that a declarative approach is easier, there are times that in response to User Input there is so much todo, it becomes much more expressive to write declarative **Event Handler** code.  I draw the line there, as I advocate that declarative event handler code no matter how complex, should update Observable Application State in order to update the DOM.  Only in unusual or limited scenarios would I expect to see imperative DOM updates.
 
 The declarative syntax is much more expressive, simpler and easier to understand but it doesn't work natively.
 
@@ -188,6 +188,6 @@ const removeBindings = () => {
 }
 ```
 
-This provides us with a simple observability pattern that we can use to map to declarative markup and unbind when we no longer need the markup.  Keep reading, and we will add the ```applyBindings``` and ```removeBindings``` into our component's ```connectedCallback``` and ```disconnectedCallback`` respectively.
+This provides us with a simple observability pattern that we can use to map to declarative markup and unbind when we no longer need the markup.  Keep reading, and we will add the ```applyBindings``` and ```removeBindings``` into our component's ```connectedCallback``` and ```disconnectedCallback``` respectively.
 
 With this final bit, we are ready to start to [Make an App](./MAKEANAPP.md) so keep reading!
