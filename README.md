@@ -6,7 +6,7 @@ A repo of how to accomplish modern development goals with Web Components
 
 So let me explain what this is... 
 
-It's a recipe that contains 2 classes and about 5 other functions.  It covers all the core ingredients you'll find in most frameworks or libraries today.  I call it didactic because everything here is very open and clear with simple instructions of how to accomplish modern development goals without any framework or library.
+It's a recipe that contains a few classes and a couple helper functions.  It covers all the core ingredients you'll find in most frameworks or libraries today.  I call it didactic because everything here is very open and clear with simple instructions of how to accomplish modern development goals without any framework or library.
 
 The reason I've created this is to show just how easy it is to attain similar benefits to what frameworks provide.  Everything here is just some syntactic sugar to create simpler patterns over native browser APIs.  
 
