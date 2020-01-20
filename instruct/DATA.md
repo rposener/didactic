@@ -9,9 +9,9 @@ By now hopefully you are completely aware of the various different mechanisms to
 
 ## More on localStorage and sessionStorage
 
-I'm going to advocate the use of these within your application.  Nearly every application that uses any kind of setting or data can benefit from these API's.  The caveat to these is that they only store strings. In order to make these more appealing I'm going to demonstrate a pattern that I commonly use to store data using ````JSON``` serialization.
+I'm going to advocate the use of these within your application.  Nearly every application that uses any kind of setting or data can benefit from these API's.  The caveat to these is that they only store strings. In order to make these more appealing I'm going to demonstrate a pattern that I commonly use to store data using ```JSON``` serialization.
 
-```js
+```javascript
 function getFrom(store, name, defaultValue) {
     const json = store.getItem(name);
     if (json === null) {
@@ -73,7 +73,7 @@ The inspection and handling of non-success status codes is something that your a
 
 Assuming you are working with just JSON data, you might find a method like this helpful to inspect all calls to your server and resolve/reject based upon the status code from the server.
 
-```js
+```javascript
 /**
  * Helper to Execute Promise and inspect the response Code
  * @param request the Request to send (e.g. new Request('url'))

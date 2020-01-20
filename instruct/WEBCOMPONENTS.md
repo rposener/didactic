@@ -2,7 +2,7 @@
 
 A Web Component is created when we create a new HTML tag by writing a class that extends HTMLElement and is registered in a browser's customElement repository.  There are some rules around this that you must know.  This my take-away for you from learning the standard.
 
-```js
+```javascript
 class SpecialNote extends HTMLElement {
     constructor() {
         super();
@@ -29,7 +29,7 @@ There are several things to note about this which are required:
 This in effect is a Web Component, but it doesn't do much yet.  Let's add some HTML to it.  There are several ways to accomplish this.  I'll give a couple examples here:
 
 **Set innerHTML (to be parsed)**
-```js
+```javascript
 class SpecialNote extends HTMLElement {
     constructor() {
         super();
@@ -40,7 +40,7 @@ window.customElements.define('special-note',SpecialNote);
 ```
 
 **Manually construct (this is painful way to write HTML)**
-```js
+```javascript
 class SpecialNote extends HTMLElement {
     constructor() {
         super();
@@ -53,7 +53,7 @@ window.customElements.define('special-note',SpecialNote);
 ```
 
 **Use a Template (this uses separate HTML)**
-```js
+```javascript
 class SpecialNote extends HTMLElement {
     constructor() {
         super();
@@ -79,7 +79,7 @@ Now that we can create a Web Component, we should provide some encapulation.  Fo
 
 This is good because it isolates the HTML of our component from the entire document tree.  If another script on your page called ```document.querySelectorAll('p')``` the result will **not** include the hello world paragraph of our Web Component.
 
-```js
+```javascript
 class SpecialNote extends HTMLElement {
     constructor() {
         super();
@@ -101,7 +101,7 @@ We can also use custom attributes on our Web Component.  We can also make those 
 
 which we can access using ```getAttribute()``` within our component.
 
-```js
+```javascript
 class SpecialNote extends HTMLElement {
     constructor() {
         super();
@@ -143,7 +143,7 @@ In this example, we now display Hello {name}! and what's more is that if you upd
 
 Ok, our basic component is working pretty good, but there's more that we can do.  The Web Components standard provides us with 2 other methods that we can implement to know when our component is actually part of the displayed page, and when it isn't.  These methods are called ```connectedCallback()``` and ```disconnectedCallback()```.  It's within these that we should do the work of connecting to other application services, adding and removing event handlers and other things.  Here you can see i've wired up a click handler that will show an alert only when a button is clicked.
 
-```js
+```javascript
 class SpecialNote extends HTMLElement {
     constructor() {
         super();

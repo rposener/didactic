@@ -13,7 +13,7 @@ First, let me speak to the 2 different types of programming that we see in Javas
 Now, let me give a couple examples so that we can see the difference.  When updating the DOM, we could accomplish this in 2 different ways:
 
 **Imperative update in Javascript**
-```js
+```javascript
     const nameInput = document.getElementById("your-name-input");
     const paragraph = document.getElementById("my-hello-para");
     paragraph.innerText = `Hello ${nameInput.value}!`;
@@ -24,14 +24,17 @@ Now, let me give a couple examples so that we can see the difference.  When upda
     <p>Hello {name}!</p>
 ```
 
-The declarative syntax is much more expressive, simpler and easier to understand, but it doesn't work natively.
+**An important note**
+> Now, before we continue with this discussion, I'm going to tell you that I believe our code should have both.  While I do believe that a declarative approach is easier, there are times that in response to User Input there is so much todo, it becomes much more expressive to write declarative **Event Handler** code.  I draw the line there, as I advocate that declarative event handler code no matter how complex, should update Observable Application State in order to udpate the DOM.  Only in unusual or limited scenarios would I expect to see imperative DOM updates.
+
+The declarative syntax is much more expressive, simpler and easier to understand but it doesn't work natively.
 
 *You might be thinking "Yeah, but how do we get declarative?"*  
 
 This it turns out is much simpler than you think.  This simply requires Observability and a couple helper methods.  Jeremy Likness recent wrote a [great article](https://blog.jeremylikness.com/blog/client-side-javascript-databinding-without-a-framework/) about how to create this very simply.  his approach is very similar to what [knockout.js](https://knockoutjs.com) has been doing for over a decade.
 
 Here's the code I've adapted from Jeremy's article:
-```js
+```javascript
 
 /**
  * Class that lets us observe a value for changes
@@ -121,7 +124,7 @@ class Computed extends Observable {
 
 Then finally we need a couple helper methods to wire up the bindings automatically.  As Jeremy did, it's easy enough to do this with data-bind attributes where we can automatically bind to all elements in our Component using these easy methods.
 
-```js
+```javascript
 /**
  * binders contains set of functions that bind
  * an element to any observable and returns a function
