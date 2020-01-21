@@ -5,7 +5,7 @@
             font-family: sans-serif;
             font-size:3em;
             grid-template-columns: 1fr;
-            grid-template-rows: 0.5fr 1.5fr 4fr;
+            grid-template-rows: 0.7em 1.5em 4fr;
             min-height: 500px;
             min-width: 400px;
         }
@@ -20,7 +20,7 @@
             background-color: #111;
             color: #fff;
             grid-row: 2;
-            font-size: 2em;
+            font-size: 1.2em;
             text-align: right;
         }
         .calc-buttons {
@@ -85,8 +85,8 @@
         }
     </style>
 <div class="calc-container">
-    <div class="calc-equation" data-bind="text:calcEquation">4 + 5 = 9</div>
-    <div class="calc-result" data-bind="text:currentNumber">0</div>
+    <div class="calc-equation" data-bind="text:calcEquation"></div>
+    <div class="calc-result" data-bind="text:calcEntry">0</div>
     <div class="calc-buttons">
         <button class="calc-number" value="9" type="button">9</button>
         <button class="calc-number" value="8" type="button">8</button>
