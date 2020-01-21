@@ -4,12 +4,26 @@ export { saveLocal, saveSession, serverJson, getLocal, getSession } from "./data
 
 export abstract class DidactComponentBase extends HTMLElement {
     private activeBindings: Array<() => void>;
-    constructor(templateId?: string) {
+
+    /**
+     * Constructs a Didact Component
+     * @param templateId the Template ID for the Component
+     * @param html the HTML including the template tag
+     */
+    constructor(templateId?: string, html?: string) {
         super();
         this.activeBindings = [];
         this.attachShadow({mode:'open'});
         if (templateId) {
-            const templ = document.getElementById(templateId) as HTMLTemplateElement;
+            let templ = document.getElementById(templateId) as HTMLTemplateElement;
+            if (!templ && html) {
+                document.body.insertAdjacentHTML("beforeend", html);
+            }
+            templ = document.getElementById(templateId) as HTMLTemplateElement;
+            if (!templ) {
+                console.warn(`Could not find a <template> with id="${templateId}" `);
+                throw 'Component is Missing Template';
+            }
             this.shadowRoot?.appendChild(templ.content.cloneNode(true));
         }
     }
