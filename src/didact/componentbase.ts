@@ -37,6 +37,18 @@ export abstract class DidactComponentBase extends HTMLElement {
             const bindList = elem.getAttribute("data-bind")?.split(',');
             bindList?.forEach((binding) => {
                 const [binderType, propName] = binding.split(':');
+                if (propName.indexOf("[") > 0 && propName.indexOf("]") > 0) {
+                    const arrProp = propName.replace(']','').split("[");
+                    if (arrProp.length === 2) {
+                        const subscribable = this[arrProp[0]][arrProp[1]];
+                        if (subscribable && subscribable.subscribe) {
+                            this.activeBindings.push(bindings[binderType](elem, subscribable));
+                        } else {
+                            console.warn(`The binding [${binding}] could not be added. No observable found in the array.`);
+                        }
+                    }
+                    return; 
+                }
                 if (!this[propName] || !this[propName].subscribe) {
                     console.warn(`The binding [${binding}] could not be added. There is not such observable property.`);
                 }
