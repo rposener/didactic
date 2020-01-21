@@ -33,11 +33,14 @@ export abstract class DidactComponentBase extends HTMLElement {
      * with a data-bind attribute
      */
     applyBindings = () => {
-        document.querySelectorAll("[data-bind]").forEach(elem => {
+        this.shadowRoot?.querySelectorAll("[data-bind]").forEach(elem => {
             const bindList = elem.getAttribute("data-bind")?.split(',');
             bindList?.forEach((binding) => {
                 const [binderType, propName] = binding.split(':');
-                if (binderType in bindings) {
+                if (!this[propName] || !this[propName].subscribe) {
+                    console.warn(`The binding [${binding}] could not be added. There is not such observable property.`);
+                }
+                else if (binderType in bindings) {
                     this.activeBindings.push(bindings[binderType](elem, this[propName]));
                 } else {
                     console.warn(`The binding [${binding}] could not be added. There is not such binding type.`);

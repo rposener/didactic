@@ -1,3 +1,110 @@
 <template id="calculator-template">
-<div>A Calculator</div>
+    <style>
+        .calc-container {
+            display:grid;
+            font-family: sans-serif;
+            font-size:3em;
+            grid-template-columns: 1fr;
+            grid-template-rows: 0.5fr 1.5fr 4fr;
+            min-height: 500px;
+            min-width: 400px;
+        }
+        .calc-equation {
+            background-color: #333;
+            color: #eee;
+            grid-row: 1;
+            font-size: 0.5em;
+            text-align: right;
+        }
+        .calc-result {
+            background-color: #111;
+            color: #fff;
+            grid-row: 2;
+            font-size: 2em;
+            text-align: right;
+        }
+        .calc-buttons {
+            grid-row: 3;
+            display:grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+        }
+        button {
+            font-size: 1em;
+        }
+        .calc-number:nth-child(1) {
+            grid-column: 3;
+        }
+        .calc-number:nth-child(2) {
+            grid-row: 1;
+            grid-column: 2;
+        }
+        .calc-number:nth-child(3) {
+            grid-row: 1;
+            grid-column: 1;
+        }
+        .calc-number:nth-child(4) {
+            grid-row: 2;
+            grid-column: 3;
+        }
+        .calc-number:nth-child(5) {
+            grid-row: 2;
+            grid-column: 2;
+        }
+        .calc-number:nth-child(6) {
+            grid-row: 2;
+            grid-column: 1;
+        }
+        .calc-number:nth-child(7) {
+            grid-row: 3;
+            grid-column: 3;
+        }
+        .calc-number:nth-child(8) {
+            grid-row: 3;
+            grid-column: 2;
+        }
+        .calc-number:nth-child(9) {
+            grid-row: 3;
+            grid-column: 1;
+        }
+        .calc-decimal {
+            grid-row: 4;
+            grid-column: 3;
+        }
+        .calc-number:nth-child(10) {
+            grid-row: 4;
+            grid-column: 2;
+        }
+        .calc-negate {
+            grid-row: 4;
+            grid-column: 1;
+        }
+        .calc-execute {
+            grid-row: 1 / 5;
+            grid-column: 5;
+        }
+    </style>
+<div class="calc-container">
+    <div class="calc-equation" data-bind="text:calcEquation">4 + 5 = 9</div>
+    <div class="calc-result" data-bind="text:currentNumber">0</div>
+    <div class="calc-buttons">
+        <button class="calc-number" value="9" type="button">9</button>
+        <button class="calc-number" value="8" type="button">8</button>
+        <button class="calc-number" value="7" type="button">7</button>
+        <button class="calc-number" value="6" type="button">6</button>
+        <button class="calc-number" value="5" type="button">5</button>
+        <button class="calc-number" value="4" type="button">4</button>
+        <button class="calc-number" value="3" type="button">3</button>
+        <button class="calc-number" value="2" type="button">2</button>
+        <button class="calc-number" value="1" type="button">1</button>
+        <button class="calc-number" value="0" type="button">0</button>
+        <button class="calc-negate" type="button">+/-</button>
+        <button class="calc-decimal" type="button">.</button>
+        <button class="calc-divide" type="button">&#247;</button>
+        <button class="calc-multiply" type="button">&#215;</button>
+        <button class="calc-minus" type="button">&#8722;</button>
+        <button class="calc-plus" type="button">&#43;</button>
+        <button class="calc-execute" type="button">&#61;</button>
+    </div>
+</div>
 </template>
