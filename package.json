@@ -1,0 +1,30 @@
+{
+  "name": "didactic",
+  "version": "1.0.0",
+  "description": "A repo of how to accomplish modern development goals with Web Components",
+  "main": "index.js",
+  "scripts": {
+    "devserver": "lite-server",
+    "webpack-watch": "npx webpack --watch --mode=development",
+    "webpack-prod": "npx webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rposener/didactic.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rposener/didactic/issues"
+  },
+  "homepage": "https://github.com/rposener/didactic#readme",
+  "devDependencies": {
+    "css-loader": "^3.4.2",
+    "html-loader": "^0.5.5",
+    "lite-server": "^2.5.4",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}
