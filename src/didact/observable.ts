@@ -86,7 +86,7 @@ export class Computed<R> extends Observable<any> {
     }
 }
 
-export interface ISubscribable<T>{
+export interface ISubscribable<T> {
 
     /**
      * Adds a Subscriber

@@ -2,8 +2,11 @@ import {DidactComponentBase, Observable, Computed} from "../didact/componentbase
 import html from "./tictactoe.html";
 
 class TicTacToeGame extends DidactComponentBase {
+    /** X or O */
     currentPlayer: Observable<string>;
+    /** Who's Turn is it? */
     message: Computed<string>;
+    /** Our Cells */
     cells: Array<Observable<string>>;
     constructor() {
         super("tictactoe-template", html);

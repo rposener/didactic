@@ -1,14 +1,20 @@
-import { DidactComponentBase, Observable } from "../didact/componentbase";
+import { DidactComponentBase, Observable, getSession, saveSession } from "../didact/componentbase";
 import html from "./calculator.html";
 
+const CALC_EQUATION = "DIDACT.CALC.EQUATION";
+
 class CalculatorComponent extends DidactComponentBase {
+    /** Display of the Equation */
     calcEquation: Observable<string>;
+    /** Display of the Input */
     calcEntry: Observable<string>;
+    /** Should the Equation be cleared on next Button Press */
     clearEquationOnNext: boolean;
 
     constructor() {
         super("calculator-template", html);
-        this.calcEquation = new Observable<string>("");
+        this.calcEquation = new Observable<string>(getSession(CALC_EQUATION,""));
+        this.calcEquation.subscribe((val) => saveSession(CALC_EQUATION,val));
         this.calcEntry = new Observable<string>("0");
         this.clearEquationOnNext = true;
     }
