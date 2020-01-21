@@ -36,6 +36,7 @@ class TicTacToeGame extends DidactComponentBase {
                 this.currentPlayer.value = "X";
             }
         }
+        this.checkForWins();
     }
 
     resetGame = (ev:Event): void => {
@@ -43,6 +44,36 @@ class TicTacToeGame extends DidactComponentBase {
             cell.value = "";
         });
         this.currentPlayer.value = "X";
+    }
+
+    checkForWins() : void {
+        /**
+         * Winning Combos are 1,2,3|4,5,6|7,8,9|1,5,9|3,5,7|1,4,7|2,5,8|3,6,9
+         */
+        const wins = [
+            [1,2,3],
+            [4,5,6],
+            [7,8,9],
+            [1,5,9],
+            [3,5,7],
+            [1,4,7],
+            [2,5,8],
+            [3,6,9]
+        ];
+        let winner;
+        wins.forEach((combo) => {
+            const a = this.cells[combo[0]-1].value;
+            const b = this.cells[combo[1]-1].value;
+            const c = this.cells[combo[2]-1].value;
+            if (a && b && c && a == b && b == c) {
+                winner = a;
+            }
+        });
+        if (winner) {
+            setTimeout(function() {
+                alert(`Congratulations! ${winner} has won the game.`);
+            }, 15);
+        }
     }
 
     disconnectedCallback(): void {
