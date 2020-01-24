@@ -1,0 +1,59 @@
+<template id="todo-list-template">
+    <style>
+        .todo-header {
+            width:100%;
+            text-align: right;
+            background-color: #333;
+        }
+        .todo-status {
+            display: inline-block;
+            width: auto;
+            color:#fff;
+            font-weight: bold;
+        }
+        .todo-list {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            margin:auto;
+            border: 0.5em solid #333;
+            background-color: #444;
+        }
+        .todo-area {
+            overflow-y: scroll;
+        }
+    </style>
+    <div class="todo-list">
+        <div class="todo-header">
+            <div class="todo-status">Total Items: 
+            <span data-bind="text:todoCount"></span>
+        </div>
+            <button type="button" class="todo-sort">Sort Toggle</button>
+            <button type="button" class="todo-hide">Show / Hide Completed</button>
+        </div>
+        <div class="todo-area" data-bind="children:todoItems"></div>
+    </div>
+</template>
+<template id="todo-item-template">
+    <style>
+        .todo-item {
+            width:100%;
+            height: 2em;
+            background-color: #999;
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+        }
+        .todo-check {
+            flex: .25;
+        }
+        .todo-text {
+            flex: .75;
+        }
+    </style>
+    <div class="todo-item">
+        <input type="checkbox" class="todo-check" data-bind="checked:completed" />
+        <span class="todo-text" data-bind="text:todoTitle"></span>
+    </div>
+</template>

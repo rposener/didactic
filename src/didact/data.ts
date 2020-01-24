@@ -52,7 +52,7 @@ export const saveLocal = (name:string, value: any) => saveTo(localStorage, name,
  * @param request the Request to send (e.g. new Request('url'))
  * @returns Promise that resolves with data. Rejects if not data
  */
-export function serverJson(request: Request) {
+export function serverJson<T>(request: Request) : PromiseLike<T> {
     return new Promise((resolve, reject) => {
         fetch(request)
             .then((response) => {

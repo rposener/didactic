@@ -37,6 +37,42 @@ export const bindings = {
         return () => {
             observable.unsubscribe(updateText);
         }
+    },
+    checked: (input:HTMLInputElement, observable:ISubscribable<any>) => {
+        if (input.type !== "checkbox")
+            throw "checked binding can only be used on checkboxes";
+        // set Default
+        input.checked = (observable.value) ? true : false;
+        const updateInput = () => {
+            if (observable.value) {
+                input.checked = true;
+            } else {
+                input.checked = false;
+            }
+        }
+        const updateObs = () => observable.value = input.checked;
+        observable.subscribe(updateInput);
+        input.addEventListener("change", updateObs);
+        return () => {
+            observable.unsubscribe(updateInput);
+            input.removeEventListener("change", updateObs);
+        }
+    },
+    children: (elem: HTMLElement, observable:ISubscribable<Array<Node>>) => {
+        const updateChildren = () => {
+            // remove all children
+            while (elem.hasChildNodes()) {
+                elem.removeChild(elem.lastChild);
+            }
+            // add all new children in order
+            observable.value.forEach((child) => {
+                elem.appendChild(child);
+            });
+        };
+        observable.subscribe(updateChildren);
+        return () => {
+            observable.unsubscribe(updateChildren);
+        }
     }
     /* You add more here */
 };
