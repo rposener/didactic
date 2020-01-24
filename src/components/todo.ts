@@ -2,7 +2,7 @@ import { DidactComponentBase, Observable, serverJson, Computed } from "../didact
 import html from "./todo.html";
 
 class TodoList extends DidactComponentBase {
-    data: ITodoItem[];
+    data: TodoItem[];
     todoItems: Observable<Array<TodoItem>>;
     todoCount: Computed<string>;
     sort:"" | "asc" | "desc";
@@ -32,8 +32,9 @@ class TodoList extends DidactComponentBase {
             method: 'GET',
             cache: 'no-store'
         });
-        this.data = await serverJson<ITodoItem[]>(req);
-        this.todoItems.value = this.data.map((todo) => new TodoItem(todo));
+        const serverTodos = await serverJson<ITodoItem[]>(req);
+        this.data = serverTodos.map((todo) => new TodoItem(todo))
+        this.todoItems.value = this.data.slice();
     }
 
     sortTodos = (ev: Event): void => {
@@ -63,8 +64,8 @@ class TodoList extends DidactComponentBase {
                 return !item.completed.value;
             });
         } else {
-            // Get the complted items back
-            const toAdd = this.data.filter(i => i.completed).map(td => new TodoItem(td));
+            // Get the completed items not in the list back
+            const toAdd = this.data.filter(i => i.completed && this.todoItems.value.indexOf(i) == -1);
             // Add to the end
             this.todoItems.value.splice(this.todoItems.value.length,0,...toAdd);
         }
