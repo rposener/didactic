@@ -5,6 +5,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="/favicon.ico">
     <title>Didact Components</title>
+
   </head>
   <body>
     <noscript>
@@ -21,6 +22,20 @@
     <div style="width:400px;height:500px;padding:1em;">
       <todo-list></todo-list>
     </div>
+    <hr>
+    <div style="margin:auto;width:60vw;height:500px;">
+      <sample-form formtitle="Vehicle Registration"></sample-form>
+    </div>
     <script type="module" src="./bundle.js"></script>
+    <script>
+      /** Custom Event Handler listening for a Custom Event from a Comonent */
+      function newRegistration(ev) {
+        // detail is the property of CustomEvent where our extra data goes
+        const json = JSON.stringify(ev.detail, null, 4);
+        console.info("submitted form", json);
+        alert(json);
+      }
+      document.querySelector("sample-form")?.addEventListener("vehicleregistered", newRegistration);
+    </script>
 </body>
 </html>

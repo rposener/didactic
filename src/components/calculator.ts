@@ -20,13 +20,13 @@ class CalculatorComponent extends DidactComponentBase {
     }
 
     connectedCallback(): void {
-        this.applyBindings();
+        super.connectedCallback();
         const buttonArea = this.shadowRoot.querySelector(".calc-buttons");
         buttonArea.addEventListener("click", this.buttonClick);
     }
 
     disconnectedCallback(): void {
-        this.removeBindings();
+        super.disconnectedCallback();
         const buttonArea = this.shadowRoot.querySelector(".calc-buttons");
         buttonArea.removeEventListener("click", this.buttonClick);
     }

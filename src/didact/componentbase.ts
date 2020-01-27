@@ -61,11 +61,12 @@ export abstract class DidactComponentBase extends HTMLElement {
                 const [binderType, propName] = binding.split(':');
                 const binder = bindings[binderType];
                 const obs = getObservable.call(this, propName);
-                if (!binder) {
-                    console.warn(`The binding [${binding}] could not be added. There is not such binding type.`);
-                }
-                if (!obs) {
-                    console.warn(`The binding [${binding}] could not be added. There is not such binding type.`);
+                if (!binder && !obs) {
+                    console.warn(`The binding [${binding}] could not be added. There is no such binding type or observable property.`);
+                } else if (!binder) {
+                    console.warn(`The binding [${binding}] could not be added. There is no such binding type.`);
+                } else if (!obs) {
+                    console.warn(`The binding [${binding}] could not be added. There is no such observable property.`);
                 }
                 if (binder && obs) {
                     this.activeBindings.push(binder(elem, obs));
@@ -80,5 +81,34 @@ export abstract class DidactComponentBase extends HTMLElement {
     removeBindings = () => {
         (this.activeBindings).forEach(removeBinding => removeBinding());
         this.activeBindings = [];
+    }
+
+    /**
+     * Default Connected Callback - just calls applyBindings();
+     */
+    connectedCallback(): void {
+        this.applyBindings();
+    }
+
+    /**
+     * Default Disconnected Callback - just calls removeBindings();
+     */
+    disconnectedCallback(): void {
+        this.removeBindings();
+    }
+
+    /**
+     * Callback for when Attribute changes - no implemention provided
+     * you must implement 
+     * ==================================================
+     *     static get observedAttributes(): string[]
+     * ==================================================
+     * on your class for this to be called
+     * @param name name of Attribute that changed
+     * @param oldValue old value
+     * @param newValue new value
+     */
+    attributeChangedCallback(name:string, oldValue:string, newValue:string): void {
+
     }
 }

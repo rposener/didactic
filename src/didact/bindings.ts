@@ -59,6 +59,7 @@ export const bindings = {
         }
     },
     children: (elem: HTMLElement, observable:ISubscribable<Array<Node>>) => {
+        // TODO: This could be a lot smarter and efficient
         const updateChildren = () => {
             // remove all children
             while (elem.hasChildNodes()) {
@@ -73,6 +74,41 @@ export const bindings = {
         return () => {
             observable.unsubscribe(updateChildren);
         }
+    },
+    options:(select:HTMLSelectElement, observable:ISubscribable<Array<any>>) => {
+        if (select.tagName !== "SELECT")
+            throw "options binding can only be used on SELECT";
+        const getValue = (val:any): string => {
+            if (select.dataset["optionsId"]) {
+                return val[select.dataset["optionsId"]];
+            } else {
+                return val;
+            }
+        }
+        const getText = (val:any): string => {
+            if (select.dataset["optionsText"]) {
+                return val[select.dataset["optionsText"]];
+            } else {
+                return val;
+            }
+        }
+        const updateOptions = () => {
+            // remove all children
+            while (select.hasChildNodes()) {
+                select.removeChild(select.lastChild);
+            }
+            // Add selector
+            if (select.dataset["optionsSelector"]) {
+                select.appendChild(new Option(select.dataset["optionsSelector"], "", true, select.value === ""));
+            }
+            // add all children
+            observable.value.forEach((val) => {
+                const optValue = getValue(val);
+                select.appendChild(new Option(getText(val), optValue, false, select.value === optValue));
+            });
+        };
+        updateOptions();
+        observable.subscribe(updateOptions);
     }
     /* You add more here */
 };

@@ -1,0 +1,69 @@
+<template id="sample-form-template">
+    <style>
+        input:invalid,select:invalid {
+            background-color: rgb(156, 3, 3);
+            color: #fff;
+        }
+        .form-field:invalid > label {
+            color:rgb(156,3,3);
+        }
+        .form-field{
+            display: flex;
+            flex-wrap: nowrap;
+        }
+        .form-field:nth-child(1) {
+            flex: 0.4fr;
+        }
+        .form-field:nth-child(1) {
+            flex: 0.6fr;
+        }
+        .form-footer {
+            text-align: right;
+        }
+        .btn-reset {
+            background-color: darkred;
+            color: #fff;
+        }
+        .btn-submit {
+            background-color: darkgreen;
+            color: #fff;
+        }
+    </style>
+    <form>
+        <h2 id="formTitle"></h2>
+        <fieldset>
+            <legend>Vehicle Details</legend>
+            <div class="form-field">
+                <label>Vehicle Year</label>
+                <input min="1920" max="2021" type="number" step="1" data-bind="value:year">
+            </div>
+            <div class="form-field">
+                <label>Vehicle Make</label>
+                <select required data-bind="options:makes,value:make" data-options-id="id" data-options-text="manufacturer" data-options-selector="- Please Select a Manufacturer -"></select>
+            </div>
+            <div class="form-field">
+                <label>Vehicle Color</label>
+                <select data-bind="options:colors,value:color"></select>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Purchase Details</legend>
+            <div class="form-field">
+                <label>County</label>
+                <input required type="text" data-bind="value:county">
+            </div>
+            <div class="form-field">
+                <label>Purchase Date</label>
+                <input type="text" class="date-picker" data-bind="value:purchaseDate">
+            </div>
+            <div class="form-field">
+                <label>Delivery Date</label>
+                <input required type="date" data-bind="value:deliveryDate">
+            </div>
+        </fieldset>
+        <div class="form-footer">
+            <button class="btn-reset" type="reset">Clear Form</button>
+            <button class="btn-submit" type="submit">Submit Form</button>
+        </div>
+    </form>
+</template>
