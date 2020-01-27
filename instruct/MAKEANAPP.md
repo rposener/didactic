@@ -71,3 +71,5 @@ Building the Application
     - /src/component/tictactoe.html - the markup for tictactoe game 
     - /src/component/todo.ts - a todo app backed by http://jsonplaceholder.typicode.com/
     - /src/component/todo.html - the markup for todo app
+    - /src/component/sampleform.ts - a sample form component
+    - /src/component/sampleform.html - a sample form coponent html
