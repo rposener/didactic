@@ -13,7 +13,7 @@ The reason I've created this is to show just how easy it is to attain similar be
 The benefits I see in that are:
 *  Easy to optimize
 *  No new languages/approaches
-*  No magic (Virual-DOM diffing or otherwise)
+*  No magic (Virtual-DOM diffing or otherwise)
 
 Frameworks are great and can boost consistency and simplicity for large teams and new developers but they also come with a set of things you have to do a certain way.  The idea here is to teach you how to meet all the same goals yourself using nothing but the built-in browser features.  
 
