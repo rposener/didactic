@@ -23,7 +23,7 @@ module.exports = {
         test: /\.html$/i,
         loader: 'html-loader',
         options: {
-          attributes: [':data-src'],
+          attributes: true,
         },
       }
     ],
