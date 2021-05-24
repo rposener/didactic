@@ -21,7 +21,7 @@ Setting up the Project
 ----------------------
 1. Setup the Project the following way - this has been done on this repo already:
     - Run this command to prep npm `npm init`
-    - Run this command to install some npm packages: `npm i webpack webpack-cli typescript ts-loader css-loader html-loader lite-server --save-dev`
+    - Run this command to install some npm packages: `npm i webpack webpack-cli typescript ts-loader sass-loader html-loader lite-server --save-dev`
     - Run this command to create typescript config: `tsc --init`
     - Create the following Edits to the files created here:
 
